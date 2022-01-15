@@ -1,24 +1,9 @@
 package com.d20charactersheet.spellextractor
 
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.springframework.http.HttpStatus
-import org.springframework.web.client.RestTemplate
-import java.io.File
 
 class ConnectTest {
-
-    @Test
-    fun loadHtml() {
-        // arrange
-
-        // act
-        val html = File("src/test/resources/spells/Acid Splash.html").readText(Charsets.UTF_8)
-
-        // assert
-        assertThat(html).isNotEmpty
-//        println(html)
-    }
 
     @Test
     fun parseRegEx() {
