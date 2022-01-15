@@ -1,6 +1,5 @@
 package com.d20charactersheet.spellextractor
 
 fun main() {
-    val spellNames = listOf("Acid Splash", "Aid")
-    SpellDownloader().downloadSpells(spellNames)
+    SpellExtractor().extractSpells("src/main/resoures/spell_names.txt")
 }
