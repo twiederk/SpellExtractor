@@ -13,7 +13,7 @@ class ConnectTest {
         // arrange
 
         // act
-        val html = File("src/test/resources/spells/Acid_Splash.html").readText(Charsets.UTF_8)
+        val html = File("src/test/resources/spells/Acid Splash.html").readText(Charsets.UTF_8)
 
         // assert
         assertThat(html).isNotEmpty
