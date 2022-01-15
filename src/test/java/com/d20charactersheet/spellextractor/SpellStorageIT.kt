@@ -2,13 +2,11 @@ package com.d20charactersheet.spellextractor
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import java.io.File
 
 class SpellStorageIT {
 
     @Test
     fun save_simpleSpellName_savedToFile() {
-        // arrange
 
         // act
         val file = SpellStorage().save("Acid Splash", "html content")
@@ -23,7 +21,6 @@ class SpellStorageIT {
 
     @Test
     fun save_spellNameWithSlash_savedToFile() {
-        // arrange
 
         // act
         val file = SpellStorage().save("Enlarge/Reduce", "html content")
@@ -38,7 +35,6 @@ class SpellStorageIT {
 
     @Test
     fun save_spellNameWithSingleQuote_savedToFile() {
-        // arrange
 
         // act
         val file = SpellStorage().save("Melf''s Acid Arrow", "html content")
@@ -49,8 +45,6 @@ class SpellStorageIT {
 
         // tear down
         file.delete()
-//        Melf''s Acid Arrow
-
     }
 
     @Test
