@@ -20,7 +20,9 @@ class SpellDownloader(
     }
 
     fun convertToQueryParamValue(spellName: String): String {
-        return spellName.lowercase().replace(' ', '-')
+        return spellName.lowercase()
+            .replace(' ', '-')
+            .replace('/', '-')
     }
 
     fun downloadSpells(spellNames: List<String>): Int {

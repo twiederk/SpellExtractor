@@ -6,7 +6,7 @@ open class SpellStorage {
 
     fun save(spellName: String, spellHtml: String): File {
         val fileName = convertSpellNameToFileName(spellName)
-        val file = File("$fileName.html")
+        val file = File("src/main/resources/spells/$fileName.html")
         file.writeText(spellHtml)
         return file
     }
