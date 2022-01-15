@@ -83,4 +83,15 @@ class SpellStorageIT {
         assertThat(spellHtml).contains("Enlarge/Reduce")
     }
 
+
+    @Test
+    fun loadSpellFromFile_spellNameWithSingleQuote_loadSpellHtml() {
+
+        // act
+        val spellHtml = SpellStorage().loadSpellFromFile("src/test/resources/spells", "Melf''s Acid Arrow")
+
+        // assert
+        assertThat(spellHtml).contains("Melf's Acid Arrow")
+    }
+
 }
