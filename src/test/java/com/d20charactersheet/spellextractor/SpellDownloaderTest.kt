@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -13,12 +14,14 @@ import org.springframework.web.client.RestTemplate
 class SpellDownloaderTest {
 
     private lateinit var restTemplate: RestTemplate
+    private lateinit var spellStorage: SpellStorage
     private lateinit var spellDownloader: SpellDownloader
 
     @BeforeEach
     fun beforeEach() {
         restTemplate = mock()
-        spellDownloader = SpellDownloader(restTemplate)
+        spellStorage = mock()
+        spellDownloader = SpellDownloader(restTemplate, spellStorage)
     }
 
     @Test
@@ -73,6 +76,33 @@ class SpellDownloaderTest {
 
         // assert
         assertThat(queryParamValue).isEqualTo("acid-splash")
+    }
+
+    @Test
+    fun downloadSpells_listOfSpells_downloadAndSaveSpells() {
+        // arrange
+        mockResponse("acid-splash")
+        mockResponse("aid")
+
+        val spellNames = listOf("Acid Splash", "Aid")
+
+        // act
+        val numberOfDownloadSpells = spellDownloader.downloadSpells(spellNames)
+
+        // assert
+        assertThat(numberOfDownloadSpells).isEqualTo(2)
+    }
+
+    private fun mockResponse(spellName: String) {
+        val response: ResponseEntity<String> = mock()
+        whenever(response.statusCode).thenReturn(HttpStatus.OK)
+        whenever(response.body).thenReturn("$spellName response body")
+        whenever(
+            restTemplate.getForEntity(
+                "https://www.aidedd.org/dnd/sorts.php?vo=${spellName}",
+                String::class.java
+            )
+        ).thenReturn(response)
     }
 
 }
