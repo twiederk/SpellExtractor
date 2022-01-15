@@ -22,6 +22,7 @@ class SpellDownloader(
     fun convertToQueryParamValue(spellName: String): String {
         return spellName.lowercase()
             .replace(' ', '-')
+            .replace("""''""", "-")
             .replace('/', '-')
     }
 
