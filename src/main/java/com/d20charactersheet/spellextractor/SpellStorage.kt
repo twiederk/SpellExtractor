@@ -8,4 +8,8 @@ open class SpellStorage {
         File("$spellName.html").writeText(spellHtml)
     }
 
+    fun loadSpellNamesFromFile(filename: String) : List<String> {
+        return File(filename).readLines()
+    }
+
 }
