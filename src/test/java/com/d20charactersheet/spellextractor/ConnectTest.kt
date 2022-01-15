@@ -9,19 +9,6 @@ import java.io.File
 class ConnectTest {
 
     @Test
-    fun connectToUrl() {
-        // arrange
-        val restTemplate = RestTemplate()
-
-        // act
-        val response = restTemplate.getForEntity("https://www.google.com/", String::class.java)
-
-        // assert
-        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        println(response.body?.toString())
-    }
-
-    @Test
     fun loadHtml() {
         // arrange
 
