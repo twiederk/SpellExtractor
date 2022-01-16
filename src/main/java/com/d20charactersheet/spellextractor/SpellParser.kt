@@ -7,7 +7,10 @@ class SpellParser {
             """<strong>Range</strong>: ([0-9a-z ]+)</div><div><strong>Components</strong>: ([A-Z, ]+)</div>""".toRegex()
 
         val (range, component) = regex.find(spellHtml)?.destructured ?: error("error occurred")
-        return Spell(range, component)
+        return Spell(
+            component = component,
+            range = range
+        )
     }
 
 }

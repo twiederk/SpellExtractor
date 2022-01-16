@@ -25,8 +25,8 @@ class SpellParserTest {
         val spell = SpellParser().parseSpell(spellName, spellHtml)
 
         // assert
-        assertThat(spell.range).isEqualTo("60 feet")
         assertThat(spell.component).isEqualTo("V, S")
+        assertThat(spell.range).isEqualTo("60 feet")
     }
 
 }
