@@ -5,10 +5,6 @@ import org.junit.jupiter.api.Test
 
 class SpellParserTest {
 
-    //    column to fill manually: components, range, duration, description, matcomponent
-    // https://regexr.com/
-    // https://rubular.com/
-
     @Test
     fun parseSpell_acidSplash_spellData() {
         // arrange
