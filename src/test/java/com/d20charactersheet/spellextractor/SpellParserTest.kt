@@ -14,7 +14,7 @@ class SpellParserTest {
         // arrange
         val spellName = "Acid Splash"
         val spellHtml =
-            """<div><strong>Casting Time</strong>: 1 action</div><div><strong>Range</strong>: 60 feet</div><div><strong>Components</strong>: V, S</div><div><strong>Duration</strong>: Instantaneous</div><div class="description ">You
+            """<div class="bloc"><h1>Acid Splash</h1><div class="trad"><div><strong>Casting Time</strong>: 1 action</div><div><strong>Range</strong>: 60 feet</div><div><strong>Components</strong>: V, S</div><div><strong>Duration</strong>: Instantaneous</div><div class="description ">You
             | hurl a bubble of acid. Choose one creature you can see within range, or
             | choose two creatures you can see within range that are within 5 feet of
             | each other. A target must succeed on a Dexterity saving throw or take 
@@ -26,6 +26,7 @@ class SpellParserTest {
 
         // assert
         assertThat(spell.spellName).isEqualTo("Acid Splash")
+        assertThat(spell.parsedSpellName).isEqualTo("Acid Splash")
         assertThat(spell.components).isEqualTo("V, S")
         assertThat(spell.range).isEqualTo("60 feet")
         assertThat(spell.duration).isEqualTo("Instantaneous")
