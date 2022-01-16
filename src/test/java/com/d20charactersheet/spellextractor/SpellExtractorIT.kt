@@ -8,10 +8,10 @@ class SpellExtractorIT {
 
     @Test
     @Disabled("tear down is missing")
-    fun extractSpells_everythingFine_extractedSpells() {
+    fun downloadSpells_everythingFine_extractedSpells() {
 
         // act
-        val numberOfSpells = SpellExtractor().extractSpells("src/test/resources/spell_names_test.txt")
+        val numberOfSpells = SpellExtractor().downloadSpells("src/test/resources/spell_names_test.txt")
 
         // assert
         assertThat(numberOfSpells).isEqualTo(5)

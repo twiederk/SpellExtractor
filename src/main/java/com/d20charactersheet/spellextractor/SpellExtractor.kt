@@ -5,7 +5,7 @@ class SpellExtractor(
     private val spellDownloader: SpellDownloader = SpellDownloader()
 ) {
 
-    fun extractSpells(filename: String): Int {
+    fun downloadSpells(filename: String): Int {
         val spellNames = spellStorage.loadSpellNamesFromFile(filename)
         return spellDownloader.downloadSpells(spellNames)
     }
