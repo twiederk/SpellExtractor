@@ -27,7 +27,42 @@ class SpellExtractorIT {
 
         // assert
         assertThat(spells).hasSize(3)
-        println(spells)
+    }
+
+    @Test
+    fun saveSpells_everythingFine_saveSpells() {
+        // arrange
+        val spellNames = listOf(
+            Spell(
+                spellName = "mySpellName1",
+                parsedSpellName = "myParsedSpellName1",
+                components = "myComponents1",
+                range = "myRange1",
+                duration = "myDuration1",
+                description = "myDescription1"
+            ),
+            Spell(
+                spellName = "mySpellName2",
+                parsedSpellName = "myParsedSpellName2",
+                components = "myComponents2",
+                range = "myRange2",
+                duration = "myDuration2",
+                description = "myDescription2"
+            ),
+        )
+
+        // act
+        val parsedSpellsFile = SpellExtractor().saveSpells("src/test/resources", spellNames)
+
+        // assert
+        assertThat(parsedSpellsFile).hasFileName("parsed_spells.txt")
+        assertThat(parsedSpellsFile).hasContent(
+            "mySpellName1\tmyParsedSpellName1\tmyComponents1\tmyRange1\tmyDuration1\tmyDescription1\n" + //
+            "mySpellName2\tmyParsedSpellName2\tmyComponents2\tmyRange2\tmyDuration2\tmyDescription2\n" //
+        )
+
+        // tear down
+        parsedSpellsFile.delete()
     }
 
 }

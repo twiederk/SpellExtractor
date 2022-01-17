@@ -1,5 +1,7 @@
 package com.d20charactersheet.spellextractor
 
+import java.io.File
+
 class SpellExtractor(
     private val spellStorage: SpellStorage = SpellStorage(),
     private val spellDownloader: SpellDownloader = SpellDownloader(),
@@ -19,6 +21,17 @@ class SpellExtractor(
             spells.add(spell)
         }
         return spells
+    }
+
+    fun saveSpells(dir: String, spells: List<Spell>): File {
+        val output = StringBuilder()
+        for (spell in spells) {
+            output.appendLine("${spell.spellName}\t${spell.parsedSpellName}\t${spell.components}\t${spell.range}\t${spell.duration}\t${spell.description}")
+        }
+
+        val file = File("$dir/parsed_spells.txt")
+        file.writeText(output.toString())
+        return file
     }
 
 }
