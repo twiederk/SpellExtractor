@@ -5,13 +5,13 @@ class SpellParser {
     fun parseSpell(spellName: String, spellHtml: String): Spell {
         val cleanedSpellHtml = spellHtml.replace("—", "-")
 
-        val nameRegEx: Regex = """<h1>([A-Za-z/ ]+)</h1>""".toRegex()
+        val nameRegEx: Regex = """<h1>([A-Za-z/ ']+)</h1>""".toRegex()
         val parsedSpellName = nameRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
 
         val rangeRegEx: Regex = """<strong>Range</strong>: ([0-9a-z ]+)</div>""".toRegex()
         val range = rangeRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing range"
 
-        val componentsRegEx: Regex = """<div><strong>Components</strong>: ([A-Za-z,() ]+)</div>""".toRegex()
+        val componentsRegEx: Regex = """<div><strong>Components</strong>: ([A-Za-z,() ']+)</div>""".toRegex()
         val components = componentsRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing components"
 
         val durationRegEx: Regex = """<div><strong>Duration</strong>: ([A-Za-z0-9:, ]+)</div>""".toRegex()

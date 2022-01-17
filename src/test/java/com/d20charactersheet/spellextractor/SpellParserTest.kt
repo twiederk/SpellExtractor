@@ -60,4 +60,33 @@ class SpellParserTest {
         )
     }
 
+    @Test
+    fun parseSpell_melfsAcidArrow_spellData() {
+        // arrange
+        val spellName = "Melf''s Acid Arrow"
+
+        val spellHtml =
+            """<div class="bloc"><h1>Melf's Acid Arrow</h1><div class="trad">
+            |<div><strong>Casting Time</strong>: 1 action</div>
+            |<div><strong>Range</strong>: 90 feet</div>
+            |<div><strong>Components</strong>: V, S, M (powdered rhubarb leaf and an adder's stomach)</div>
+            |<div><strong>Duration</strong>: Instantaneous</div>
+            |<div class="description ">A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn.<br /><strong><em>At Higher Levels</em></strong>. When you cast this spell using a spell slot of 3rd level or higher, the damage (both initial and later) increases by 1d4 for each slot level above 2nd.<br /></div>""".trimMargin()
+                .trimIndent()
+
+
+        // act
+        val spell = SpellParser().parseSpell(spellName, spellHtml)
+
+        // assert
+        assertThat(spell.spellName).isEqualTo("Melf''s Acid Arrow")
+        assertThat(spell.parsedSpellName).isEqualTo("Melf's Acid Arrow")
+        assertThat(spell.components).isEqualTo("V, S, M (powdered rhubarb leaf and an adder's stomach)")
+        assertThat(spell.range).isEqualTo("90 feet")
+        assertThat(spell.duration).isEqualTo("Instantaneous")
+        assertThat(spell.description).isEqualTo(
+            "A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn.<br /><strong><em>At Higher Levels</em></strong>. When you cast this spell using a spell slot of 3rd level or higher, the damage (both initial and later) increases by 1d4 for each slot level above 2nd.<br />"
+        )
+    }
+
 }
