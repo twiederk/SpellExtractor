@@ -25,6 +25,7 @@ class SpellExtractor(
 
     fun saveSpells(dir: String, spells: List<Spell>): File {
         val output = StringBuilder()
+        output.appendLine("SpellName\tParsedSpellName\tComponents\tRange\tDuration\tDescription")
         for (spell in spells) {
             output.appendLine("${spell.spellName}\t${spell.parsedSpellName}\t${spell.components}\t${spell.range}\t${spell.duration}\t${spell.description}")
         }
