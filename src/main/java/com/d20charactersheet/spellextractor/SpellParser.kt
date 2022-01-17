@@ -6,14 +6,17 @@ class SpellParser {
         val nameRegEx: Regex = """<h1>([A-Za-z ]+)</h1>""".toRegex()
         val parsedSpellName = nameRegEx.find(spellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
 
-        val regex: Regex =
-            """<strong>Range</strong>: ([0-9a-z ]+)</div><div><strong>Components</strong>: ([A-Z, ]+)</div><div><strong>Duration</strong>: ([A-Za-z0-9]+)</div><div class="description ">([A-Za-z0-9, <>()'.\n]+)</div>""".toRegex()
-        val groupValues = regex.find(spellHtml)?.groupValues
+        val rangeRegEx: Regex = """<strong>Range</strong>: ([0-9a-z ]+)</div>""".toRegex()
+        val range = rangeRegEx.find(spellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
 
-        val range = groupValues?.get(1) ?: "error occurred while parsing components"
-        val components = groupValues?.get(2) ?: "error occurred while parsing range"
-        val duration = groupValues?.get(3) ?: "error occurred while parsing duration"
-        val description = groupValues?.get(4) ?: "error occurred while parsing description"
+        val componentsRegEx: Regex = """<div><strong>Components</strong>: ([A-Z, ]+)</div>""".toRegex()
+        val components = componentsRegEx.find(spellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
+
+        val durationRegEx: Regex = """<div><strong>Duration</strong>: ([A-Za-z0-9]+)</div>""".toRegex()
+        val duration = durationRegEx.find(spellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
+
+        val descriptionRegEx: Regex = """<div class="description ">([A-Za-z0-9, <>()'.\n]+)</div>""".toRegex()
+        val description = descriptionRegEx.find(spellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
 
         return Spell(
             spellName = spellName,
