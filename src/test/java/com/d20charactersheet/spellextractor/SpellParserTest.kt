@@ -11,7 +11,6 @@ class SpellParserTest {
         val spellName = "Acid Splash"
         val spellHtml =
             """<div class="bloc"><h1>Acid Splash</h1><div class="trad">
-            |<div><strong>Casting Time</strong>: 1 action</div>
             |<div><strong>Range</strong>: 60 feet</div>
             |<div><strong>Components</strong>: V, S</div>
             |<div><strong>Duration</strong>: Instantaneous</div>
@@ -38,7 +37,6 @@ class SpellParserTest {
 
         val spellHtml =
             """<div class="bloc"><h1>Enlarge/Reduce</h1><div class="trad">
-            |<div><strong>Casting Time</strong>: 1 action</div>
             |<div><strong>Range</strong>: 30 feet</div>
             |<div><strong>Components</strong>: V, S, M (a pinch of powdered iron)</div>
             |<div><strong>Duration</strong>: Concentration, up to 1 minute</div>
@@ -67,7 +65,6 @@ class SpellParserTest {
 
         val spellHtml =
             """<div class="bloc"><h1>Melf's Acid Arrow</h1><div class="trad">
-            |<div><strong>Casting Time</strong>: 1 action</div>
             |<div><strong>Range</strong>: 90 feet</div>
             |<div><strong>Components</strong>: V, S, M (powdered rhubarb leaf and an adder's stomach)</div>
             |<div><strong>Duration</strong>: Instantaneous</div>
@@ -96,7 +93,6 @@ class SpellParserTest {
 
         val spellHtml =
             """<div class="bloc"><h1>Alter Self</h1><div class="trad">
-            |<div><strong>Casting Time</strong>: 1 action</div>
             |<div><strong>Range</strong>: Self</div>
             |<div><strong>Components</strong>: V, S</div>
             |<div><strong>Duration</strong>: Concentration, up to 1 hour</div>
@@ -125,7 +121,6 @@ class SpellParserTest {
 
         val spellHtml =
             """<div class="bloc"><h1>Animal Messenger</h1><div class="trad">
-            |<div><strong>Casting Time</strong>: 1 action</div>
             |<div><strong>Range</strong>: 30 feet</div><div>
             |<div><strong>Components</strong>: V, S, M (a morsel of food)</div>
             |<div><strong>Duration</strong>: 24 hours</div>
@@ -154,7 +149,6 @@ class SpellParserTest {
 
         val spellHtml =
             """<div class="bloc"><h1>Antilife Shell</h1><div class="trad">
-            |<div><strong>Casting Time</strong>: 1 action</div>
             |<div><strong>Range</strong>: Self (10-foot radius)</div>
             |<div><strong>Components</strong>: V, S</div>
             |<div><strong>Duration</strong>: Concentration, up to 1 hour</div>
@@ -183,7 +177,6 @@ class SpellParserTest {
 
         val spellHtml =
             """<div class="bloc"><h1>Arcane Lock</h1><div class="trad">
-            |<div><strong>Casting Time</strong>: 1 action</div>
             |<div><strong>Range</strong>: Touch</div>
             |<div><strong>Components</strong>: V, S, M (gold dust worth at least 25 gp, which the spell consumes)</div>
             |<div><strong>Duration</strong>: Until dispelled</div>
