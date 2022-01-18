@@ -282,4 +282,32 @@ class SpellParserTest {
         )
     }
 
+    @Test
+    fun parseSpell_controlWeather_spellData() {
+        // arrange
+        val spellName = "Control Weather"
+
+        val spellHtml =
+            """<div class="bloc"><h1>Control Weather</h1><div class="trad">
+            |<div><strong>Range</strong>: Self (5-mile radius)</div>
+            |<div><strong>Components</strong>: V, S, M (burning incense and bits of earth and wood mixed in water)</div>
+            |<div><strong>Duration</strong>: Concentration, up to 8 hours</div>
+            |<div class="description ">You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early.<br />When you cast the spell, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 × 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal. When you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction.<br /><br /><strong>Precipitation</strong><br /><table><tr><th class="center">Stage</th><th>Condition</th></tr><tr><td class="center">1</td><td>Clear</td></tr><tr><td class="center">2</td><td>Light clouds</td></tr><tr><td class="center">3</td><td>Overcast or ground fog</td></tr><tr><td class="center">4</td><td>Rain, hail, or snow</td></tr><tr><td class="center">5</td><td>Torrential rain, driving hail, or blizzard</td></tr></table><br /><strong>Temperature</strong><br /><table><tr><th class="center">Stage</th><th>Condition</th></tr><tr><td class="center">1</td><td>Unbearable heat</td></tr><tr><td class="center">2</td><td>Hot</td></tr><tr><td class="center">3</td><td>Warm</td></tr><tr><td class="center">4</td><td>Cool</td></tr><tr><td class="center">5</td><td>Cold</td></tr><tr><td class="center">6</td><td>Arctic cold</td></tr></table><br /><strong>Wind</strong><br /><table><tr><th class="center">Stage</th><th>Condition</th></tr><tr><td class="center">1</td><td>Calm</td></tr><tr><td class="center">2</td><td>Moderate wind</td></tr><tr><td class="center">3</td><td>Strong wind</td></tr><tr><td class="center">4</td><td>Gale</td></tr><tr><td class="center">5</td><td>Storm</td></tr></table><br /></div>"""
+                .trimIndent()
+
+
+        // act
+        val spell = SpellParser().parseSpell(spellName, spellHtml)
+
+        // assert
+        assertThat(spell.spellName).isEqualTo("Control Weather")
+        assertThat(spell.parsedSpellName).isEqualTo("Control Weather")
+        assertThat(spell.components).isEqualTo("V, S, M (burning incense and bits of earth and wood mixed in water)")
+        assertThat(spell.range).isEqualTo("Self (5-mile radius)")
+        assertThat(spell.duration).isEqualTo("Concentration, up to 8 hours")
+        assertThat(spell.description).isEqualTo(
+            "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early.<br />When you cast the spell, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 * 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal. When you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction.<br /><br /><strong>Precipitation</strong><br /><table><tr><th class='center'>Stage</th><th>Condition</th></tr><tr><td class='center'>1</td><td>Clear</td></tr><tr><td class='center'>2</td><td>Light clouds</td></tr><tr><td class='center'>3</td><td>Overcast or ground fog</td></tr><tr><td class='center'>4</td><td>Rain, hail, or snow</td></tr><tr><td class='center'>5</td><td>Torrential rain, driving hail, or blizzard</td></tr></table><br /><strong>Temperature</strong><br /><table><tr><th class='center'>Stage</th><th>Condition</th></tr><tr><td class='center'>1</td><td>Unbearable heat</td></tr><tr><td class='center'>2</td><td>Hot</td></tr><tr><td class='center'>3</td><td>Warm</td></tr><tr><td class='center'>4</td><td>Cool</td></tr><tr><td class='center'>5</td><td>Cold</td></tr><tr><td class='center'>6</td><td>Arctic cold</td></tr></table><br /><strong>Wind</strong><br /><table><tr><th class='center'>Stage</th><th>Condition</th></tr><tr><td class='center'>1</td><td>Calm</td></tr><tr><td class='center'>2</td><td>Moderate wind</td></tr><tr><td class='center'>3</td><td>Strong wind</td></tr><tr><td class='center'>4</td><td>Gale</td></tr><tr><td class='center'>5</td><td>Storm</td></tr></table><br />"
+        )
+    }
+
 }
