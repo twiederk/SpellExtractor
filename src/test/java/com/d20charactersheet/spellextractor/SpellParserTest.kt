@@ -156,7 +156,7 @@ class SpellParserTest {
             """<div class="bloc"><h1>Antilife Shell</h1><div class="trad">
             |<div><strong>Casting Time</strong>: 1 action</div>
             |<div><strong>Range</strong>: Self (10-foot radius)</div>
-            |<div><strong>Components</strong>: V, S</div><
+            |<div><strong>Components</strong>: V, S</div>
             |<div><strong>Duration</strong>: Concentration, up to 1 hour</div>
             |<div class="description ">A shimmering barrier extends out from you in a 10-foot radius and moves with you, remaining centered on you and hedging out creatures other than undead and constructs. The barrier lasts for the duration.<br />The barrier prevents an affected creature from passing or reaching through. An affected creature can cast spells or make attacks with ranged or reach weapons through the barrier.<br />If you move so that an affected creature is forced to pass through the barrier, the spell ends.<br /></div>""".trimMargin()
                 .trimIndent()
@@ -171,6 +171,35 @@ class SpellParserTest {
         assertThat(spell.components).isEqualTo("V, S")
         assertThat(spell.range).isEqualTo("Self (10-foot radius)")
         assertThat(spell.duration).isEqualTo("Concentration, up to 1 hour")
+        assertThat(spell.description).isEqualTo(
+            "A shimmering barrier extends out from you in a 10-foot radius and moves with you, remaining centered on you and hedging out creatures other than undead and constructs. The barrier lasts for the duration.<br />The barrier prevents an affected creature from passing or reaching through. An affected creature can cast spells or make attacks with ranged or reach weapons through the barrier.<br />If you move so that an affected creature is forced to pass through the barrier, the spell ends.<br />"
+        )
+    }
+
+    @Test
+    fun parseSpell_arcaneLock_spellData() {
+        // arrange
+        val spellName = "Arcane Lock"
+
+        val spellHtml =
+            """<div class="bloc"><h1>Arcane Lock</h1><div class="trad">
+            |<div><strong>Casting Time</strong>: 1 action</div>
+            |<div><strong>Range</strong>: Touch</div>
+            |<div><strong>Components</strong>: V, S, M (gold dust worth at least 25 gp, which the spell consumes)</div>
+            |<div><strong>Duration</strong>: Until dispelled</div>
+            |<div class="description ">You touch a closed door, window, gate, chest, or other entryway, and it becomes locked for the duration. You and the creatures you designate when you cast this spell can open the object normally. You can also set a password that, when spoken within 5 feet of the object, suppresses this spell for 1 minute. Otherwise, it is impassable until it is broken or the spell is dispelled or suppressed. Casting <em><a href="https://www.aidedd.org/dnd/sorts.php?vo=knock">knock</a></em> on the object suppresses <em><a href="https://www.aidedd.org/dnd/sorts.php?vo=arcane-lock">arcane lock</a></em> for 10 minutes.<br />While affected by this spell, the object is more difficult to break or force open; the DC to break it or pick any locks on it increases by 10.<br /></div>"""
+                .trimIndent()
+
+
+        // act
+        val spell = SpellParser().parseSpell(spellName, spellHtml)
+
+        // assert
+        assertThat(spell.spellName).isEqualTo("Arcane Lock")
+        assertThat(spell.parsedSpellName).isEqualTo("Arcane Lock")
+        assertThat(spell.components).isEqualTo("V, S, M (gold dust worth at least 25 gp, which the spell consumes)")
+        assertThat(spell.range).isEqualTo("Touch")
+        assertThat(spell.duration).isEqualTo("Until dispelled")
         assertThat(spell.description).isEqualTo(
             "A shimmering barrier extends out from you in a 10-foot radius and moves with you, remaining centered on you and hedging out creatures other than undead and constructs. The barrier lasts for the duration.<br />The barrier prevents an affected creature from passing or reaching through. An affected creature can cast spells or make attacks with ranged or reach weapons through the barrier.<br />If you move so that an affected creature is forced to pass through the barrier, the spell ends.<br />"
         )

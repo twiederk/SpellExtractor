@@ -11,7 +11,7 @@ class SpellParser {
         val rangeRegEx: Regex = """<strong>Range</strong>: ([A-Za-z0-9()\- ]+)</div>""".toRegex()
         val range = rangeRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing range"
 
-        val componentsRegEx: Regex = """<div><strong>Components</strong>: ([A-Za-z,() ']+)</div>""".toRegex()
+        val componentsRegEx: Regex = """<div><strong>Components</strong>: ([A-Za-z0-9,() ']+)</div>""".toRegex()
         val components = componentsRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing components"
 
         val durationRegEx: Regex = """<div><strong>Duration</strong>: ([A-Za-z0-9:, ]+)</div>""".toRegex()
