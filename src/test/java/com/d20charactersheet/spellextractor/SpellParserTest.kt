@@ -201,7 +201,7 @@ class SpellParserTest {
         assertThat(spell.range).isEqualTo("Touch")
         assertThat(spell.duration).isEqualTo("Until dispelled")
         assertThat(spell.description).isEqualTo(
-            "A shimmering barrier extends out from you in a 10-foot radius and moves with you, remaining centered on you and hedging out creatures other than undead and constructs. The barrier lasts for the duration.<br />The barrier prevents an affected creature from passing or reaching through. An affected creature can cast spells or make attacks with ranged or reach weapons through the barrier.<br />If you move so that an affected creature is forced to pass through the barrier, the spell ends.<br />"
+            "You touch a closed door, window, gate, chest, or other entryway, and it becomes locked for the duration. You and the creatures you designate when you cast this spell can open the object normally. You can also set a password that, when spoken within 5 feet of the object, suppresses this spell for 1 minute. Otherwise, it is impassable until it is broken or the spell is dispelled or suppressed. Casting <em><a href='https://www.aidedd.org/dnd/sorts.php?vo=knock'>knock</a></em> on the object suppresses <em><a href='https://www.aidedd.org/dnd/sorts.php?vo=arcane-lock'>arcane lock</a></em> for 10 minutes.<br />While affected by this spell, the object is more difficult to break or force open, the DC to break it or pick any locks on it increases by 10.<br />"
         )
     }
 
