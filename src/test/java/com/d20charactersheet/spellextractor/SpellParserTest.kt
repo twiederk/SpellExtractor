@@ -319,7 +319,7 @@ class SpellParserTest {
             """<div class="bloc"><h1>Reincarnate</h1><div class="trad">
             |<div><strong>Range</strong>: Touch</div>
             |<div><strong>Components</strong>: V, S, M (rare oils and unguents worth at least 1,000 gp, which the spell consumes)</div>
-            |<div><strong>Duration</strong>: Instantaneous</div><
+            |<div><strong>Duration</strong>: Instantaneous</div>
             |<div class="description ">You touch a dead humanoid or a piece of a dead humanoid. Provided that the creature has been dead no longer than 10 days, the spell forms a new adult body for it and then calls the soul to enter that body.<br />If the target's soul isn't free or willing to do so, the spell fails.<br />The magic fashions a new body for the creature to inhabit, which likely causes the creature's race to change. The DM rolls a d100 and consults the following table to determine what form the creature takes when restored to life, or the DM chooses a form.	<br /><table><tr><th class="center">d100</th><th>Race</th></tr><tr><td class="center">01-04</td><td>Dragonborn</td></tr><tr><td class="center">05-13</td><td>Dwarf, hill</td></tr><tr><td class="center">14-21</td><td>Dwarf, mountain</td></tr><tr><td class="center">22-25</td><td>Elf, dark</td></tr><tr><td class="center">26-34</td><td>Elf, high</td></tr><tr><td class="center">35-42</td><td>Elf, wood</td></tr><tr><td class="center">43-46</td><td>Gnome, forest</td></tr><tr><td class="center">47-52</td><td>Gnome, rock</td></tr><tr><td class="center">53-56</td><td>Half-elf</td></tr><tr><td class="center">57-60</td><td>Half-orc</td></tr><tr><td class="center">61-68</td><td>Halfling, lightfoot</td></tr><tr><td class="center">69-76</td><td>Halfling, stout</td></tr><tr><td class="center">77-96</td><td>Human</td></tr><tr><td class="center">97-00</td><td>Tiefling</td></tr></table><br />The reincarnated creature recalls its former life and experiences. It retains the capabilities it had in its original form, except it exchanges its original race for the new one and changes its racial traits accordingly.<br /></div>"""
                 .trimIndent()
 
@@ -335,6 +335,34 @@ class SpellParserTest {
         assertThat(spell.duration).isEqualTo("Instantaneous")
         assertThat(spell.description).isEqualTo(
             "You touch a dead humanoid or a piece of a dead humanoid. Provided that the creature has been dead no longer than 10 days, the spell forms a new adult body for it and then calls the soul to enter that body.<br />If the target's soul isn't free or willing to do so, the spell fails.<br />The magic fashions a new body for the creature to inhabit, which likely causes the creature's race to change. The DM rolls a d100 and consults the following table to determine what form the creature takes when restored to life, or the DM chooses a form. <br /><table><tr><th class='center'>d100</th><th>Race</th></tr><tr><td class='center'>01-04</td><td>Dragonborn</td></tr><tr><td class='center'>05-13</td><td>Dwarf, hill</td></tr><tr><td class='center'>14-21</td><td>Dwarf, mountain</td></tr><tr><td class='center'>22-25</td><td>Elf, dark</td></tr><tr><td class='center'>26-34</td><td>Elf, high</td></tr><tr><td class='center'>35-42</td><td>Elf, wood</td></tr><tr><td class='center'>43-46</td><td>Gnome, forest</td></tr><tr><td class='center'>47-52</td><td>Gnome, rock</td></tr><tr><td class='center'>53-56</td><td>Half-elf</td></tr><tr><td class='center'>57-60</td><td>Half-orc</td></tr><tr><td class='center'>61-68</td><td>Halfling, lightfoot</td></tr><tr><td class='center'>69-76</td><td>Halfling, stout</td></tr><tr><td class='center'>77-96</td><td>Human</td></tr><tr><td class='center'>97-00</td><td>Tiefling</td></tr></table><br />The reincarnated creature recalls its former life and experiences. It retains the capabilities it had in its original form, except it exchanges its original race for the new one and changes its racial traits accordingly.<br />"
+        )
+    }
+
+    @Test
+    fun parseSpell_scrying_spellData() {
+        // arrange
+        val spellName = "Scrying"
+
+        val spellHtml =
+            """<div class="bloc"><h1>Scrying</h1><div class="trad">
+            |<div><strong>Range</strong>: Self</div>
+            |<div><strong>Components</strong>: V, S, M (a focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water)</div>
+            |<div><strong>Duration</strong>: Concentration, up to 10 minutes</div>
+            |<div class="description ">You can see and hear a particular creature you choose that is on the same plane of existence as you. The target must make a Wisdom saving throw, which is modified by how well you know the target and the sort of physical connection you have to it. If a target knows you're casting this spell, it can fail the saving throw voluntarily if it wants to be observed.<br /><table><tr><th>Knowledge</th><th class="center">Save Modifier</th></tr><tr><td>Secondhand (you have heard of the target)</td><td class="center">+5</td></tr><tr><td>Firsthand (you have met the target)</td><td class="center">+0</td></tr><tr><td>Familiar (you know the target well)</td><td class="center">−5</td></tr></table><br /><table><tr><th>Connection</th><th class="center">Save Modifier</th></tr><tr><td>Likeness or picture</td><td class="center">−2</td></tr><tr><td>Possession or garment</td><td class="center">−4</td></tr><tr><td>Body part, lock of hair, bit of nail, or the like</td><td class="center">−10</td></tr></table><br />On a successful save, the target isn't affected, and you can't use this spell against it again for 24 hours. On a failed save, the spell creates an invisible sensor within 10 feet of the target. You can see and hear through the sensor as if you were there. The sensor moves with the target, remaining within 10 feet of it for the duration. A creature that can see invisible objects sees the sensor as a luminous orb about the size of your fist. Instead of targeting a creature, you can choose a location you have seen before as the target of this spell. When you do, the sensor appears at that location and doesn't move.<br /></div>"""
+                .trimIndent()
+
+
+        // act
+        val spell = SpellParser().parseSpell(spellName, spellHtml)
+
+        // assert
+        assertThat(spell.spellName).isEqualTo("Scrying")
+        assertThat(spell.parsedSpellName).isEqualTo("Scrying")
+        assertThat(spell.components).isEqualTo("V, S, M (a focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water)")
+        assertThat(spell.range).isEqualTo("Self")
+        assertThat(spell.duration).isEqualTo("Concentration, up to 10 minutes")
+        assertThat(spell.description).isEqualTo(
+            "You can see and hear a particular creature you choose that is on the same plane of existence as you. The target must make a Wisdom saving throw, which is modified by how well you know the target and the sort of physical connection you have to it. If a target knows you're casting this spell, it can fail the saving throw voluntarily if it wants to be observed.<br /><table><tr><th>Knowledge</th><th class=\"center\">Save Modifier</th></tr><tr><td>Secondhand (you have heard of the target)</td><td class=\"center\">+5</td></tr><tr><td>Firsthand (you have met the target)</td><td class=\"center\">+0</td></tr><tr><td>Familiar (you know the target well)</td><td class=\"center\">−5</td></tr></table><br /><table><tr><th>Connection</th><th class=\"center\">Save Modifier</th></tr><tr><td>Likeness or picture</td><td class=\"center\">−2</td></tr><tr><td>Possession or garment</td><td class=\"center\">−4</td></tr><tr><td>Body part, lock of hair, bit of nail, or the like</td><td class=\"center\">−10</td></tr></table><br />On a successful save, the target isn't affected, and you can't use this spell against it again for 24 hours. On a failed save, the spell creates an invisible sensor within 10 feet of the target. You can see and hear through the sensor as if you were there. The sensor moves with the target, remaining within 10 feet of it for the duration. A creature that can see invisible objects sees the sensor as a luminous orb about the size of your fist. Instead of targeting a creature, you can choose a location you have seen before as the target of this spell. When you do, the sensor appears at that location and doesn't move.<br />"
         )
     }
 
