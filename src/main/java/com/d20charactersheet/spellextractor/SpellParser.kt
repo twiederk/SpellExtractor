@@ -3,7 +3,7 @@ package com.d20charactersheet.spellextractor
 class SpellParser {
 
     fun parseSpell(spellName: String, spellHtml: String): Spell {
-        val cleanedSpellHtml = spellHtml.replace("—", "-").replace(";", ",")
+        val cleanedSpellHtml = spellHtml.replace("—", "-").replace(";", ",").replace("’", "'")
 
         val nameRegEx: Regex = """<h1>([A-Za-z/ ']+)</h1>""".toRegex()
         val parsedSpellName = nameRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
