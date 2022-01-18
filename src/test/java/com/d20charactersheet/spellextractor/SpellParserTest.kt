@@ -226,4 +226,32 @@ class SpellParserTest {
         )
     }
 
+    @Test
+    fun parseSpell_arcaneGate_spellData() {
+        // arrange
+        val spellName = "Arcane Gate"
+
+        val spellHtml =
+            """<div class="bloc"><h1>Arcane Gate</h1><div class="trad">
+            |<div><strong>Range</strong>: 500 feet</div>
+            |<div><strong>Components</strong>: V, S</div>
+            |<div><strong>Duration</strong>: Concentration, up to 10 minutes</div>
+            |<div class="description">Create 2 portals (max 500 ft between them) and allow teleport from one to the other.</div>"""
+                .trimIndent()
+
+
+        // act
+        val spell = SpellParser().parseSpell(spellName, spellHtml)
+
+        // assert
+        assertThat(spell.spellName).isEqualTo("Arcane Gate")
+        assertThat(spell.parsedSpellName).isEqualTo("Arcane Gate")
+        assertThat(spell.components).isEqualTo("V, S")
+        assertThat(spell.range).isEqualTo("500 feet")
+        assertThat(spell.duration).isEqualTo("Concentration, up to 10 minutes")
+        assertThat(spell.description).isEqualTo(
+            "Create 2 portals (max 500 ft between them) and allow teleport from one to the other."
+        )
+    }
+
 }
