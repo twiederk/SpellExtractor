@@ -147,4 +147,33 @@ class SpellParserTest {
         )
     }
 
+    @Test
+    fun parseSpell_antiLifeShell_spellData() {
+        // arrange
+        val spellName = "Antilife Shell"
+
+        val spellHtml =
+            """<div class="bloc"><h1>Antilife Shell</h1><div class="trad">
+            |<div><strong>Casting Time</strong>: 1 action</div>
+            |<div><strong>Range</strong>: Self (10-foot radius)</div>
+            |<div><strong>Components</strong>: V, S</div><
+            |<div><strong>Duration</strong>: Concentration, up to 1 hour</div>
+            |<div class="description ">A shimmering barrier extends out from you in a 10-foot radius and moves with you, remaining centered on you and hedging out creatures other than undead and constructs. The barrier lasts for the duration.<br />The barrier prevents an affected creature from passing or reaching through. An affected creature can cast spells or make attacks with ranged or reach weapons through the barrier.<br />If you move so that an affected creature is forced to pass through the barrier, the spell ends.<br /></div>""".trimMargin()
+                .trimIndent()
+
+
+        // act
+        val spell = SpellParser().parseSpell(spellName, spellHtml)
+
+        // assert
+        assertThat(spell.spellName).isEqualTo("Antilife Shell")
+        assertThat(spell.parsedSpellName).isEqualTo("Antilife Shell")
+        assertThat(spell.components).isEqualTo("V, S")
+        assertThat(spell.range).isEqualTo("Self (10-foot radius)")
+        assertThat(spell.duration).isEqualTo("Concentration, up to 1 hour")
+        assertThat(spell.description).isEqualTo(
+            "A shimmering barrier extends out from you in a 10-foot radius and moves with you, remaining centered on you and hedging out creatures other than undead and constructs. The barrier lasts for the duration.<br />The barrier prevents an affected creature from passing or reaching through. An affected creature can cast spells or make attacks with ranged or reach weapons through the barrier.<br />If you move so that an affected creature is forced to pass through the barrier, the spell ends.<br />"
+        )
+    }
+
 }
