@@ -254,4 +254,32 @@ class SpellParserTest {
         )
     }
 
+    @Test
+    fun parseSpell_augury_spellData() {
+        // arrange
+        val spellName = "Augury"
+
+        val spellHtml =
+            """<div class="bloc"><h1>Augury</h1><div class="trad">
+            |<div><strong>Range</strong>: Self</div>
+            |<div><strong>Components</strong>: V, S, M (specially marked sticks, bones, or similar tokens worth at least 25 gp)</div>
+            |<div><strong>Duration</strong>: Instantaneous</div>
+            |<div class="description ">By casting gem-inlaid sticks, rolling dragon bones, laying out ornate cards, or employing some other divining tool, you receive an omen from an otherworldly entity about the results of a specific course of action that you plan to take within the next 30 minutes. The DM chooses from the following possible omens:<br />• Weal, for good results<br />• Woe, for bad results<br />• Weal and woe, for both good and bad results<br />• Nothing, for results that aren't especially good or bad<br />The spell doesn't take into account any possible circumstances that might change the outcome, such as the casting of additional spells or the loss or gain of a companion.<br />If you cast the spell two or more times before completing your next long rest, there is a cumulative 25 percent chance for each casting after the first that you get a random reading. The DM makes this roll in secret.<br /></div>"""
+                .trimIndent()
+
+
+        // act
+        val spell = SpellParser().parseSpell(spellName, spellHtml)
+
+        // assert
+        assertThat(spell.spellName).isEqualTo("Augury")
+        assertThat(spell.parsedSpellName).isEqualTo("Augury")
+        assertThat(spell.components).isEqualTo("V, S, M (specially marked sticks, bones, or similar tokens worth at least 25 gp)")
+        assertThat(spell.range).isEqualTo("Self")
+        assertThat(spell.duration).isEqualTo("Instantaneous")
+        assertThat(spell.description).isEqualTo(
+            "By casting gem-inlaid sticks, rolling dragon bones, laying out ornate cards, or employing some other divining tool, you receive an omen from an otherworldly entity about the results of a specific course of action that you plan to take within the next 30 minutes. The DM chooses from the following possible omens:<br />- Weal, for good results<br />- Woe, for bad results<br />- Weal and woe, for both good and bad results<br />- Nothing, for results that aren't especially good or bad<br />The spell doesn't take into account any possible circumstances that might change the outcome, such as the casting of additional spells or the loss or gain of a companion.<br />If you cast the spell two or more times before completing your next long rest, there is a cumulative 25 percent chance for each casting after the first that you get a random reading. The DM makes this roll in secret.<br />"
+        )
+    }
+
 }
