@@ -9,6 +9,7 @@ class SpellParser {
             .replace("’", "'")
             .replace("•", "-")
             .replace("×", "*")
+            .replace("\t", " ")
 
         val nameRegEx: Regex = """<h1>([A-Za-z/ ']+)</h1>""".toRegex()
         val parsedSpellName = nameRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
