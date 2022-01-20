@@ -12,7 +12,7 @@ class SpellParserTest {
         val spellHtml =
             """<div class="bloc"><h1>Acid Splash</h1><div class="trad">
             |<div><strong>Range</strong>: 60 feet</div>
-            |<div><strong>Components</strong>: V, S</div>
+            |<div><strong>Components</strong>: V, S </div>
             |<div><strong>Duration</strong>: Instantaneous</div>
             |<div class="description ">You hurl a bubble of acid. Choose one creature you can see within range, or choose two creatures you can see within range that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take 1d6 acid damage.<br>This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).<br></div>""".trimMargin()
                 .trimIndent()
@@ -24,7 +24,7 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Acid Splash")
         assertThat(spell.parsedSpellName).isEqualTo("Acid Splash")
-        assertThat(spell.components).isEqualTo("V, S")
+        assertThat(spell.components).isEqualTo("V, S ")
         assertThat(spell.range).isEqualTo("60 feet")
         assertThat(spell.duration).isEqualTo("Instantaneous")
         assertThat(spell.description).isEqualTo("You hurl a bubble of acid. Choose one creature you can see within range, or choose two creatures you can see within range that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take 1d6 acid damage.<br>This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).<br>")
@@ -50,7 +50,7 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Enlarge/Reduce")
         assertThat(spell.parsedSpellName).isEqualTo("Enlarge/Reduce")
-        assertThat(spell.components).isEqualTo("V, S, M")
+        assertThat(spell.components).isEqualTo("V, S, M ")
         assertThat(spell.matcomponents).isEqualTo("a pinch of powdered iron")
         assertThat(spell.range).isEqualTo("30 feet")
         assertThat(spell.duration).isEqualTo("Concentration, up to 1 minute")
@@ -79,7 +79,8 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Melf''s Acid Arrow")
         assertThat(spell.parsedSpellName).isEqualTo("Melf's Acid Arrow")
-        assertThat(spell.components).isEqualTo("V, S, M (powdered rhubarb leaf and an adder's stomach)")
+        assertThat(spell.components).isEqualTo("V, S, M ")
+        assertThat(spell.matcomponents).isEqualTo("powdered rhubarb leaf and an adder's stomach")
         assertThat(spell.range).isEqualTo("90 feet")
         assertThat(spell.duration).isEqualTo("Instantaneous")
         assertThat(spell.description).isEqualTo(
@@ -135,7 +136,8 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Animal Messenger")
         assertThat(spell.parsedSpellName).isEqualTo("Animal Messenger")
-        assertThat(spell.components).isEqualTo("V, S, M (a morsel of food)")
+        assertThat(spell.components).isEqualTo("V, S, M ")
+        assertThat(spell.matcomponents).isEqualTo("a morsel of food")
         assertThat(spell.range).isEqualTo("30 feet")
         assertThat(spell.duration).isEqualTo("24 hours")
         assertThat(spell.description).isEqualTo(
@@ -191,7 +193,8 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Arcane Lock")
         assertThat(spell.parsedSpellName).isEqualTo("Arcane Lock")
-        assertThat(spell.components).isEqualTo("V, S, M (gold dust worth at least 25 gp, which the spell consumes)")
+        assertThat(spell.components).isEqualTo("V, S, M ")
+        assertThat(spell.matcomponents).isEqualTo("gold dust worth at least 25 gp, which the spell consumes")
         assertThat(spell.range).isEqualTo("Touch")
         assertThat(spell.duration).isEqualTo("Until dispelled")
         assertThat(spell.description).isEqualTo(
@@ -219,7 +222,8 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Clone")
         assertThat(spell.parsedSpellName).isEqualTo("Clone")
-        assertThat(spell.components).isEqualTo("V, S, M (a diamond worth at least 1,000 gp and at least 1 cubic inch of flesh of the creature that is to be cloned, which the spell consumes, and a vessel worth at least 2,000 gp that has a sealable lid and is large enough to hold the creature being cloned, such as a huge urn, coffin, mud-filled cyst in the ground, or crystal container filled with salt water)")
+        assertThat(spell.components).isEqualTo("V, S, M ")
+        assertThat(spell.matcomponents).isEqualTo("a diamond worth at least 1,000 gp and at least 1 cubic inch of flesh of the creature that is to be cloned, which the spell consumes, and a vessel worth at least 2,000 gp that has a sealable lid and is large enough to hold the creature being cloned, such as a huge urn, coffin, mud-filled cyst in the ground, or crystal container filled with salt water")
         assertThat(spell.range).isEqualTo("Touch")
         assertThat(spell.duration).isEqualTo("Instantaneous")
         assertThat(spell.description).isEqualTo(
@@ -275,7 +279,8 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Augury")
         assertThat(spell.parsedSpellName).isEqualTo("Augury")
-        assertThat(spell.components).isEqualTo("V, S, M (specially marked sticks, bones, or similar tokens worth at least 25 gp)")
+        assertThat(spell.components).isEqualTo("V, S, M ")
+        assertThat(spell.matcomponents).isEqualTo("specially marked sticks, bones, or similar tokens worth at least 25 gp")
         assertThat(spell.range).isEqualTo("Self")
         assertThat(spell.duration).isEqualTo("Instantaneous")
         assertThat(spell.description).isEqualTo(
@@ -303,7 +308,8 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Control Weather")
         assertThat(spell.parsedSpellName).isEqualTo("Control Weather")
-        assertThat(spell.components).isEqualTo("V, S, M (burning incense and bits of earth and wood mixed in water)")
+        assertThat(spell.components).isEqualTo("V, S, M ")
+        assertThat(spell.matcomponents).isEqualTo("burning incense and bits of earth and wood mixed in water")
         assertThat(spell.range).isEqualTo("Self (5-mile radius)")
         assertThat(spell.duration).isEqualTo("Concentration, up to 8 hours")
         assertThat(spell.description).isEqualTo(
@@ -331,7 +337,8 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Reincarnate")
         assertThat(spell.parsedSpellName).isEqualTo("Reincarnate")
-        assertThat(spell.components).isEqualTo("V, S, M (rare oils and unguents worth at least 1,000 gp, which the spell consumes)")
+        assertThat(spell.components).isEqualTo("V, S, M ")
+        assertThat(spell.matcomponents).isEqualTo("rare oils and unguents worth at least 1,000 gp, which the spell consumes")
         assertThat(spell.range).isEqualTo("Touch")
         assertThat(spell.duration).isEqualTo("Instantaneous")
         assertThat(spell.description).isEqualTo(
@@ -359,7 +366,8 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Scrying")
         assertThat(spell.parsedSpellName).isEqualTo("Scrying")
-        assertThat(spell.components).isEqualTo("V, S, M (a focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water)")
+        assertThat(spell.components).isEqualTo("V, S, M ")
+        assertThat(spell.matcomponents).isEqualTo("a focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water")
         assertThat(spell.range).isEqualTo("Self")
         assertThat(spell.duration).isEqualTo("Concentration, up to 10 minutes")
         assertThat(spell.description).isEqualTo(
