@@ -35,4 +35,20 @@ class SpellExtractor(
         return file
     }
 
+    fun parseAndSaveSpells(baseDir: String) {
+        val spellNames = SpellStorage().loadSpellNamesFromFile("$baseDir/spell_names.txt")
+        println("Loaded spell names: ${spellNames.size}")
+
+        val spellExtractor = SpellExtractor()
+        val spells = spellExtractor.parseSpells("$baseDir/spells", spellNames)
+        println("Parsed spells: ${spells.size}")
+        println("- name errors: ${spells.count { it.spellName.startsWith("error") }}")
+        println("- parsed name errors: ${spells.count { it.parsedSpellName.startsWith("error") }}")
+        println("- components errors: ${spells.count { it.components.startsWith("error") }}")
+        println("- range: ${spells.count { it.range.startsWith("error") }}")
+        println("- duration errors: ${spells.count { it.duration.startsWith("error") }}")
+        println("- description errors: ${spells.count { it.description.startsWith("error") }}")
+        spellExtractor.saveSpells(baseDir, spells)
+    }
+
 }
