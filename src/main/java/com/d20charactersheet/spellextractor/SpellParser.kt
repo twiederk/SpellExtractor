@@ -1,6 +1,9 @@
 package com.d20charactersheet.spellextractor
 
-class SpellParser(private val textCleaner: TextCleaner = TextCleaner()) {
+class SpellParser(
+    private val textCleaner: TextCleaner = TextCleaner(),
+    private val componentConverter: ComponentConverter = ComponentConverter()
+) {
 
     fun parseSpell(spellName: String, spellHtml: String): Spell {
         val cleanedSpellHtml = textCleaner.clean(spellHtml)
@@ -29,6 +32,7 @@ class SpellParser(private val textCleaner: TextCleaner = TextCleaner()) {
             spellName = spellName,
             parsedSpellName = parsedSpellName,
             components = components,
+            componentsInt = componentConverter.convert(components),
             matcomponents = matcomponents,
             range = range,
             duration = duration,

@@ -2,7 +2,7 @@ package com.d20charactersheet.spellextractor
 
 class ComponentConverter {
 
-    fun convert(components: String): Any {
+    fun convert(components: String): Int {
         var result = 0
         if (components.contains("V")) {
             result += 1
