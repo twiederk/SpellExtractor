@@ -75,15 +75,14 @@ class TextCleanerTest {
         assertThat(convertedHtml).isEqualTo("<th class='center'>")
     }
 
-
     @Test
-    fun convertHtml_containsNewLine_replaceWithHtmlTagBreak() {
+    fun convertHtml_containsNewLine_removeFromText() {
 
         // act
-        val cleanedDescription = TextCleaner().convertHtml("that is all.\nStart new")
+        val cleanedDescription = TextCleaner().convertHtml("that is all.\n Start new")
 
         // assert
-        assertThat(cleanedDescription).isEqualTo("that is all.<br/>Start new")
+        assertThat(cleanedDescription).isEqualTo("that is all. Start new")
     }
 
 }

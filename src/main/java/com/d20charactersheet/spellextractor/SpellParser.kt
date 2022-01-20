@@ -27,7 +27,7 @@ class SpellParser(private val textCleaner: TextCleaner = TextCleaner()) {
             components = components,
             range = range,
             duration = duration,
-            description = description.replace("\"", "'").replace("""\n""".toRegex(), "")
+            description = textCleaner.convertHtml(description)
         )
     }
 
