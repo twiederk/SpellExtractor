@@ -4,6 +4,7 @@ data class Spell(
     val spellName: String,
     val parsedSpellName: String,
     val components: String,
+    val matcomponents: String,
     val range: String,
     val duration: String,
     val description: String

@@ -50,7 +50,8 @@ class SpellParserTest {
         // assert
         assertThat(spell.spellName).isEqualTo("Enlarge/Reduce")
         assertThat(spell.parsedSpellName).isEqualTo("Enlarge/Reduce")
-        assertThat(spell.components).isEqualTo("V, S, M (a pinch of powdered iron)")
+        assertThat(spell.components).isEqualTo("V, S, M")
+        assertThat(spell.matcomponents).isEqualTo("a pinch of powdered iron")
         assertThat(spell.range).isEqualTo("30 feet")
         assertThat(spell.duration).isEqualTo("Concentration, up to 1 minute")
         assertThat(spell.description).isEqualTo(

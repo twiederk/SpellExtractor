@@ -37,6 +37,7 @@ class SpellExtractorIT {
                 spellName = "mySpellName1",
                 parsedSpellName = "myParsedSpellName1",
                 components = "myComponents1",
+                matcomponents = "myMatcomponents1",
                 range = "myRange1",
                 duration = "myDuration1",
                 description = "myDescription1"
@@ -45,6 +46,7 @@ class SpellExtractorIT {
                 spellName = "mySpellName2",
                 parsedSpellName = "myParsedSpellName2",
                 components = "myComponents2",
+                matcomponents = "myMatcomponents2",
                 range = "myRange2",
                 duration = "myDuration2",
                 description = "myDescription2"
@@ -58,8 +60,8 @@ class SpellExtractorIT {
         assertThat(parsedSpellsFile).hasFileName("parsed_spells.txt")
         assertThat(parsedSpellsFile).hasContent(
             "SpellName\tParsedSpellName\tComponents\tRange\tDuration\tDescription\n" + //
-            "mySpellName1\tmyParsedSpellName1\tmyComponents1\tmyRange1\tmyDuration1\tmyDescription1\n" + //
-            "mySpellName2\tmyParsedSpellName2\tmyComponents2\tmyRange2\tmyDuration2\tmyDescription2\n" //
+                    "mySpellName1\tmyParsedSpellName1\tmyComponents1\tmyRange1\tmyDuration1\tmyDescription1\tmyMatcomponents1\n" + //
+                    "mySpellName2\tmyParsedSpellName2\tmyComponents2\tmyRange2\tmyDuration2\tmyDescription2\tmyMatcomponents2\n" //
         )
 
         // tear down

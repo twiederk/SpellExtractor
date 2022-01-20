@@ -25,6 +25,7 @@ class SpellParser(private val textCleaner: TextCleaner = TextCleaner()) {
             spellName = spellName,
             parsedSpellName = parsedSpellName,
             components = components,
+            matcomponents = "",
             range = range,
             duration = duration,
             description = textCleaner.convertHtml(description)
