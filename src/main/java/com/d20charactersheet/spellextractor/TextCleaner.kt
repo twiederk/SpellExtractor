@@ -13,4 +13,10 @@ class TextCleaner {
             .replace("\t", " ")
     }
 
+    fun convertHtml(description: String): String {
+        return description
+            .replace("\"", "'")
+            .replace("""\n""".toRegex(), "<br/>")
+    }
+
 }

@@ -7,11 +7,9 @@ class TextCleanerTest {
 
     @Test
     fun clean_containsSpecialDashes_replaceWithNormalDash() {
-        // arrange
-        val text = "−5 and —10"
 
         // act
-        val cleanedTest = TextCleaner().clean(text)
+        val cleanedTest = TextCleaner().clean("−5 and —10")
 
         // assert
         assertThat(cleanedTest).isEqualTo("-5 and -10")
@@ -19,11 +17,9 @@ class TextCleanerTest {
 
     @Test
     fun clean_containsSemicolon_replaceWithComma() {
-        // arrange
-        val text = "checks; next"
 
         // act
-        val cleanedTest = TextCleaner().clean(text)
+        val cleanedTest = TextCleaner().clean("checks; next")
 
         // assert
         assertThat(cleanedTest).isEqualTo("checks, next")
@@ -31,11 +27,9 @@ class TextCleanerTest {
 
     @Test
     fun clean_containsSpecialQuote_replaceWithSingleQuote() {
-        // arrange
-        val text = "her name is ’Barbara’"
 
         // act
-        val cleanedTest = TextCleaner().clean(text)
+        val cleanedTest = TextCleaner().clean("her name is ’Barbara’")
 
         // assert
         assertThat(cleanedTest).isEqualTo("her name is 'Barbara'")
@@ -43,11 +37,9 @@ class TextCleanerTest {
 
     @Test
     fun clean_containsBulletPoint_replaceWithDash() {
-        // arrange
-        val text = "• backpack"
 
         // act
-        val cleanedTest = TextCleaner().clean(text)
+        val cleanedTest = TextCleaner().clean("• backpack")
 
         // assert
         assertThat(cleanedTest).isEqualTo("- backpack")
@@ -55,26 +47,43 @@ class TextCleanerTest {
 
     @Test
     fun clean_containsSpecialMultiplySign_replaceWithNormalMultiplySign() {
-        // arrange
-        val text = "1d4 × 2"
 
         // act
-        val cleanedTest = TextCleaner().clean(text)
+        val cleanedTest = TextCleaner().clean("1d4 × 2")
 
         // assert
         assertThat(cleanedTest).isEqualTo("1d4 * 2")
     }
 
     @Test
-    fun clean_containsTab_replaceSpase() {
-        // arrange
-        val text = "Name\tBarbara"
+    fun clean_containsTab_replaceWithSpace() {
 
         // act
-        val cleanedTest = TextCleaner().clean(text)
+        val cleanedTest = TextCleaner().clean("Name\tBarbara")
 
         // assert
         assertThat(cleanedTest).isEqualTo("Name Barbara")
+    }
+
+    @Test
+    fun convertHtml_containsDoubleQuote_replaceWithSingleQuote() {
+
+        // act
+        val convertedHtml = TextCleaner().convertHtml("""<th class="center">""")
+
+        // assert
+        assertThat(convertedHtml).isEqualTo("<th class='center'>")
+    }
+
+
+    @Test
+    fun convertHtml_containsNewLine_replaceWithHtmlTagBreak() {
+
+        // act
+        val cleanedDescription = TextCleaner().convertHtml("that is all.\nStart new")
+
+        // assert
+        assertThat(cleanedDescription).isEqualTo("that is all.<br/>Start new")
     }
 
 }
