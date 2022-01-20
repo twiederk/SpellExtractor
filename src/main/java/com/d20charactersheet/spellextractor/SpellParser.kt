@@ -1,19 +1,13 @@
 package com.d20charactersheet.spellextractor
 
-class SpellParser {
+class SpellParser(private val textCleaner: TextCleaner = TextCleaner()) {
 
     fun parseSpell(spellName: String, spellHtml: String): Spell {
-        val cleanedSpellHtml = spellHtml
-            .replace("—", "-")
-            .replace("−", "-")
-            .replace(";", ",")
-            .replace("’", "'")
-            .replace("•", "-")
-            .replace("×", "*")
-            .replace("\t", " ")
+        val cleanedSpellHtml = textCleaner.clean(spellHtml)
 
         val nameRegEx: Regex = """<h1>([A-Za-z/ ']+)</h1>""".toRegex()
-        val parsedSpellName = nameRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
+        val parsedSpellName =
+            nameRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing name"
 
         val rangeRegEx: Regex = """<strong>Range</strong>: ([A-Za-z0-9()\- ]+)</div>""".toRegex()
         val range = rangeRegEx.find(cleanedSpellHtml)?.groupValues?.get(1) ?: "error occurred while parsing range"
