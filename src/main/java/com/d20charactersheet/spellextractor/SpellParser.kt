@@ -5,6 +5,7 @@ class SpellParser {
     fun parseSpell(spellName: String, spellHtml: String): Spell {
         val cleanedSpellHtml = spellHtml
             .replace("—", "-")
+            .replace("−", "-")
             .replace(";", ",")
             .replace("’", "'")
             .replace("•", "-")
