@@ -59,7 +59,7 @@ class SpellExtractorIT {
         // assert
         assertThat(parsedSpellsFile).hasFileName("parsed_spells.txt")
         assertThat(parsedSpellsFile).hasContent(
-            "SpellName\tParsedSpellName\tComponents\tRange\tDuration\tDescription\n" + //
+            "SpellName\tParsedSpellName\tComponents\tRange\tDuration\tDescription\tmatComponents\n" + //
                     "mySpellName1\tmyParsedSpellName1\tmyComponents1\tmyRange1\tmyDuration1\tmyDescription1\tmyMatcomponents1\n" + //
                     "mySpellName2\tmyParsedSpellName2\tmyComponents2\tmyRange2\tmyDuration2\tmyDescription2\tmyMatcomponents2\n" //
         )
